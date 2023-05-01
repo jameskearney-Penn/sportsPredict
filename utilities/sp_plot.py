@@ -2,6 +2,15 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 #Want to have ways to visualize the data so users can examine stats raw
+"""
+Function that plots the stats of a certain player from the players dataframe
+
+Args:
+    player, player_shooting_stats, player_other_stats
+
+Returns:
+    Saves a graph in stats folder as stats/{player_name}_stat.png
+"""
 def plot_player(player, player_shooting_stats, player_other_stats):
     fig, (ax1, ax2) = plt.subplots(2, 1)
     
@@ -25,6 +34,15 @@ def plot_player(player, player_shooting_stats, player_other_stats):
     fig.savefig("stats/{}_stat.png".format(player))
     print("Graph saved in stats folder as stats/{}_stat.png".format(player))
 
+"""
+Function that plots the stats of a certain team from the games dataframe
+
+Args:
+    team, team_shooting_data, team_other_data, combined_shooting_data, combined_other_data
+
+Returns:
+    Saves a graph in stats folder as stats/{team_name}_stat.png
+"""
 def plot_team(team, team_shooting_data, team_other_data, combined_shooting_data, combined_other_data):
     fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2)
     

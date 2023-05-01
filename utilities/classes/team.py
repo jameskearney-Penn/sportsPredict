@@ -8,15 +8,14 @@
     - combined_other_stats
     - players
     
-    Str: Returns text prompt for a user to analyze a specific team
+    __str__: Returns text prompt for a user to analyze a specific team
+    
     _getitem_: allows for specific information to be returned from the Team Object
 
-    Returns:
-        _type_: _description_
+    printTeamStats(): prints the stats about a certain team for the user
 """
 
-class Team:
-    
+class Team:  
     def __init__(self, name, shooting_stats, other_stats, combined_shooting_stats, combined_other_stats, players):
         self.name = name
         self.shooting_stats = shooting_stats

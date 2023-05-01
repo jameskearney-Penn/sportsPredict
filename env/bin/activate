@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/jakearney/Documents/CIS192/sports_predict/env"
+VIRTUAL_ENV="/Users/jakearney/Documents/CIS192/sportsPredict/myenv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
@@ -54,7 +54,7 @@ fi
 
 if [ -z "${VIRTUAL_ENV_DISABLE_PROMPT:-}" ] ; then
     _OLD_VIRTUAL_PS1="${PS1:-}"
-    PS1="(env) ${PS1:-}"
+    PS1="(myenv) ${PS1:-}"
     export PS1
 fi
 

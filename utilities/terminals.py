@@ -1,9 +1,19 @@
-from sp_plot import *
+from .sp_plot import *
+
+"""
+Function that runs the team terminal that interacts with the user
+
+Args:
+    team (a Team Object)
+
+Returns:
+    None
+"""
 def analyzeTeamTerminal(team):
     while True:
         try:
             print(team)
-            user_input = input("'back' or Control-D to return): ")
+            user_input = input("('back' or Control-D to return): ")
             if user_input == 'back':
                 break
             elif user_input == '1':
@@ -15,11 +25,20 @@ def analyzeTeamTerminal(team):
         except EOFError:  # triggered by Ctrl+D
             break
 
+"""
+Function that runs the player terminal that interacts with the user
+
+Args:
+    player (a Player Object)
+
+Returns:
+    None
+"""
 def analyzePlayerTerminal(player):
     while True:
         try:
             print(player)
-            user_input = input("'back' or Control-D to return): ")
+            user_input = input("('back' or Control-D to return): ")
             if user_input == 'back':
                 break
             elif user_input == '1':

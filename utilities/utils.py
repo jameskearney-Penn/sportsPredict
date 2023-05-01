@@ -1,16 +1,59 @@
 import pandas as pd
-from team import Team
-from player import Player
+from .classes.team import Team
+from .classes.player import Player
 
+
+"""
+Function that gets the shooting stats a certain player from the players dataframe
+
+Args:
+    player (name of player to get), players_df (NBA_PLAYER_STATS_DATAFRAME)
+
+Returns:
+    The "FG%", "3P%", "2P%", "FT%" of the player as a (pd.series)
+"""
 def getPlayerShootingStats(player, player_df):
     return player_df[player_df["Player"] == player][["FG%", "3P%", "2P%", "FT%"]].iloc[0]
 
+
+"""
+Function that gets the others stats of certain player from the players dataframe
+
+Args:
+    player (name of player to get), players_df (NBA_PLAYER_STATS_DATAFRAME)
+
+Returns:
+    The "Age", "G", "GS", "MP" of the player as a (pd.series)
+"""
 def getPlayerOtherStats(player, player_df):
     return player_df[player_df["Player"] == player][["Age", "G", "GS", "MP"]].iloc[0]
 
+
+"""
+Function that gets the others stats of certain player from the players dataframe
+
+Args:
+    team (name of team to get players from), games_df (NBA_GAME_DATAFRAME)
+
+Returns:
+    The subset of the players_df that play on a certain team
+"""
 def getTeamPlayers(team, player_df):
     return player_df[player_df["Tm"] == team]
 
+
+"""
+Function that gets the stats of a certain team from the games dataframe
+
+Args:
+    team (name of team to get players from), games_df (NBA_GAME_DATAFRAME)
+
+Returns:
+    team_shooting_data: "HOME_FG_PCT", "HOME_FG3_PCT", "HOME_FT_PCT", "AWAY_FG_PCT", "AWAY_FG3_PCT", "AWAY_FT_PCT"
+    team_other_data: "W_HOME", "HOME_TURNOVERS", "HOME_TOT_REB", "W_AWAY", "AWAY_TURNOVERS", "AWAY_TOT_REB"
+    combined_shooting_data: "FG_PCT", "FG3_PCT", "FT_PCT"
+    combined_other_data: "W", "TURNOVERS", "TOT_REB"
+"""
 def getTeamStats(team, games_df):
     #Stats when team was home team
     team_home = games_df[games_df["HOME"] == team][[
@@ -52,6 +95,16 @@ def getTeamStats(team, games_df):
 
     return team_shooting_data, team_other_data, combined_shooting_data, combined_other_data
 
+
+"""
+Function that creates a Team Object from the Team Class
+
+Args:
+    team (name of team to get players from), players_df (NBA_PLAYER_STATS_DATAFRAME), games_df (NBA_GAME_DATAFRAME)
+
+Returns:
+    Team Object
+"""
 def createTeamObject(team, game_df, player_df):
     team_shooting_data, team_other_data, combined_shooting_data, combined_other_data = getTeamStats(team, game_df)
     players = getTeamPlayers(team, player_df)
@@ -64,11 +117,15 @@ def createTeamObject(team, game_df, player_df):
         players = players
     )
 
-def isPlayer(player, player_df):
-    if player_df[player_df["Player"] == player].empty:
-        return False
-    return True
+"""
+Function that creates a Player Object from the Player Class
 
+Args:
+    team (name of team to get players from), players_df (NBA_PLAYER_STATS_DATAFRAME)
+
+Returns:
+    Player Object
+""" 
 def createPlayerObject(player, player_df):
     player_shooting_data = getPlayerShootingStats(player, player_df)
     player_other_data = getPlayerOtherStats(player, player_df)
@@ -79,3 +136,17 @@ def createPlayerObject(player, player_df):
         other_stats = player_other_data,
         team = team,
     )
+
+"""
+Function that determines whether or not a player is in the players dataframe
+
+Args:
+    player (name of player to check), players_df (NBA_PLAYER_STATS_DATAFRAME)
+
+Returns:
+    Bool
+""" 
+def isPlayer(player, player_df):
+    if player_df[player_df["Player"] == player].empty:
+        return False
+    return True

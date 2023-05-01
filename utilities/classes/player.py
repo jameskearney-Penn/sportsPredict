@@ -11,9 +11,12 @@
     - 2fg
     - ft
     
-    Str: Returns text prompt for a user to analyze a specific team
-    _getitem_: allows for specific information to be returned from the Team Object
+    __str__: Returns text prompt for a user to analyze a specific player
+    
+    _getitem_: allows for specific information to be returned from the Player Object
 
+    printPlayerStats(): prints the stats about a certain player for the user
+    
     Returns:
         _type_: _description_
 """
@@ -36,10 +39,13 @@ class Player:
         elif key == 'other_stats':
             return self.other_stats
         elif key == 'team':
-            return self.team
+            for team in self.team:
+                return team
     
-    def printTeamStats(self):
-        print(self.name)
-        print(self.other_stats)
-        print(self.shooting_stats)
-        print(self.team)
+    def printPlayerStats(self):
+        for name in self.name:
+            print(name)
+        for stat in self.other_stats:
+            print(stat)
+        for stat in self.shooting_stats:
+            print(stat)
